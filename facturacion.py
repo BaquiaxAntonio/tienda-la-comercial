@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 # Modulo de facturacion de La Comercial
+# Calcula subtotales, descuentos e IVA de cada venta
 
 from inventario import buscar_producto
 
 NOMBRE_TIENDA = "La Comercial"
+IVA = 0.12
 
 def calcular_subtotal(items):
     # items es una lista de tuplas (codigo, cantidad)
@@ -14,13 +16,22 @@ def calcular_subtotal(items):
             subtotal = subtotal + producto["precio"] * cantidad
     return subtotal
 
+def calcular_total(subtotal, descuento):
+    base = subtotal - descuento
+    impuesto = base * IVA
+    return base + impuesto, impuesto
+
 def imprimir_factura(cliente, items):
     subtotal = calcular_subtotal(items)
+    descuento = 0
+    total, impuesto = calcular_total(subtotal, descuento)
     print("-" * 38)
     print(NOMBRE_TIENDA)
     print("-" * 38)
     print("Cliente: " + cliente)
     print("Subtotal:".ljust(28) + ("Q" + format(subtotal, ".2f")).rjust(10))
+    print("IVA (12%):".ljust(28) + ("Q" + format(impuesto, ".2f")).rjust(10))
+    print("TOTAL:".ljust(28) + ("Q" + format(total, ".2f")).rjust(10))
 
 if __name__ == "__main__":
     venta = [("A001", 2), ("B003", 1)]
