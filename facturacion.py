@@ -25,9 +25,9 @@ def imprimir_factura(cliente, items):
     subtotal = calcular_subtotal(items)
     descuento = 0
     total, impuesto = calcular_total(subtotal, descuento)
-    print("-" * 38)
+    print("-" * 40)
     print(NOMBRE_TIENDA)
-    print("-" * 38)
+    print("-" * 40)
     print("Cliente: " + cliente)
     for codigo, cantidad in items:
         producto = buscar_producto(codigo)
@@ -35,7 +35,7 @@ def imprimir_factura(cliente, items):
             linea = producto["nombre"] + " x" + str(cantidad)
             precio = producto["precio"] * cantidad
             print(linea.ljust(28) + ("Q" + format(precio, ".2f")).rjust(10))
-    print("-" * 38)
+    print("-" * 40)
     print("Subtotal:".ljust(28) + ("Q" + format(subtotal, ".2f")).rjust(10))
     print("IVA (12%):".ljust(28) + ("Q" + format(impuesto, ".2f")).rjust(10))
     print("TOTAL:".ljust(28) + ("Q" + format(total, ".2f")).rjust(10))
