@@ -3,6 +3,7 @@
 # Calcula subtotales, descuentos e IVA de cada venta
 
 from inventario import buscar_producto
+from descuentos import descuento_cliente_frecuente
 
 NOMBRE_TIENDA = "La Comercial"
 IVA = 0.12
@@ -21,9 +22,11 @@ def calcular_total(subtotal, descuento):
     impuesto = base * IVA
     return base + impuesto, impuesto
 
-def imprimir_factura(cliente, items):
+def imprimir_factura(cliente, items, frecuente):
     subtotal = calcular_subtotal(items)
     descuento = 0
+    if frecuente:
+        descuento = descuento_cliente_frecuente(subtotal)
     total, impuesto = calcular_total(subtotal, descuento)
     print("-" * 40)
     print(NOMBRE_TIENDA)
@@ -37,9 +40,10 @@ def imprimir_factura(cliente, items):
             print(linea.ljust(28) + ("Q" + format(precio, ".2f")).rjust(10))
     print("-" * 40)
     print("Subtotal:".ljust(28) + ("Q" + format(subtotal, ".2f")).rjust(10))
+    print("Descuento:".ljust(28) + ("Q" + format(descuento, ".2f")).rjust(10))
     print("IVA (12%):".ljust(28) + ("Q" + format(impuesto, ".2f")).rjust(10))
     print("TOTAL:".ljust(28) + ("Q" + format(total, ".2f")).rjust(10))
 
 if __name__ == "__main__":
     venta = [("A001", 2), ("B003", 1)]
-    imprimir_factura("Juana Morales", venta)
+    imprimir_factura("Juana Morales", venta, True)
