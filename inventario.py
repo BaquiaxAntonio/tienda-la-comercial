@@ -14,3 +14,9 @@ def buscar_producto(codigo):
         if producto["codigo"] == codigo:
             return producto
     return None
+
+def hay_stock(codigo, cantidad):
+    producto = buscar_producto(codigo)
+    if producto is None:
+        return False
+    return producto["stock"] >= cantidad
