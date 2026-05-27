@@ -20,3 +20,9 @@ def hay_stock(codigo, cantidad):
     if producto is None:
         return False
     return producto["stock"] >= cantidad
+
+def valor_inventario():
+    total = 0
+    for producto in PRODUCTOS:
+        total = total + producto["precio"] * producto["stock"]
+    return total
