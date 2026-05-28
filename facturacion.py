@@ -45,5 +45,5 @@ def imprimir_factura(cliente, items, frecuente):
     print("TOTAL:".ljust(28) + ("Q" + format(total, ".2f")).rjust(10))
 
 if __name__ == "__main__":
-    venta = [("A001", 2), ("B003", 1)]
+    venta = [("A001", 2), ("B003", 2), ("C002", 5)]
     imprimir_factura("Juana Morales", venta, True)
