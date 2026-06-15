@@ -28,9 +28,9 @@ def imprimir_factura(cliente, items, frecuente):
     if frecuente:
         descuento = descuento_cliente_frecuente(subtotal)
     total, impuesto = calcular_total(subtotal, descuento)
-    print("-" * 40)
-    print(NOMBRE_TIENDA)
-    print("-" * 40)
+    print("=" * 40)
+    print(NOMBRE_TIENDA.center(40))
+    print("=" * 40)
     print("Cliente: " + cliente)
     for codigo, cantidad in items:
         producto = buscar_producto(codigo)
