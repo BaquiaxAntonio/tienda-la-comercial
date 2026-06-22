@@ -44,6 +44,7 @@ def imprimir_factura(cliente, items, frecuente):
     print("Descuento:".ljust(28) + ("Q" + format(descuento, ".2f")).rjust(10))
     print("IVA (12%):".ljust(28) + ("Q" + format(impuesto, ".2f")).rjust(10))
     print("TOTAL:".ljust(28) + ("Q" + format(total, ".2f")).rjust(10))
+    print("Gracias por su compra. Vuelva pronto.")
 
 if __name__ == "__main__":
     venta = [("A001", 2), ("B003", 2), ("C002", 5)]
