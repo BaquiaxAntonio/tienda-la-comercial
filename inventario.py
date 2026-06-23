@@ -4,7 +4,7 @@
 PRODUCTOS = [
     {"codigo": "A001", "nombre": "Cuaderno espiral", "precio": 25.00, "stock": 40},
     {"codigo": "A002", "nombre": "Lapicero azul", "precio": 3.50, "stock": 200},
-    {"codigo": "B003", "nombre": "Café molido 500g", "precio": 60.00, "stock": 30},
+    {"codigo": "B003", "nombre": "Café molido 500g", "precio": 60.00, "stock": 35},
     {"codigo": "C002", "nombre": "Jabón de manos", "precio": 16.00, "stock": 80},
     {"codigo": "C005", "nombre": "Escoba plástica", "precio": 42.00, "stock": 15},
 ]
