@@ -12,6 +12,7 @@ def reporte_inventario():
         print(linea.ljust(32) + valor.rjust(8))
     print("-" * 40)
     print("Valor total del inventario: Q" + format(valor_inventario(), ".2f"))
+    # pendiente: exportar a archivo
 
 if __name__ == "__main__":
     reporte_inventario()
