@@ -6,7 +6,7 @@ from inventario import buscar_producto
 from descuentos import descuento_cliente_frecuente
 
 NOMBRE_TIENDA = "La Comercial"
-IVA = 0.12
+IVA = 0.10
 
 def calcular_subtotal(items):
     # items es una lista de tuplas (codigo, cantidad)
