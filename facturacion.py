@@ -2,7 +2,7 @@
 # Modulo de facturacion de La Comercial
 # Calcula subtotales, descuentos e IVA de cada venta
 
-from inventario import buscar_producto
+from inventario import buscar_producto, hay_stock
 from descuentos import descuento_cliente_frecuente
 
 NOMBRE_TIENDA = "La Comercial"
@@ -13,7 +13,7 @@ def calcular_subtotal(items):
     subtotal = 0
     for codigo, cantidad in items:
         producto = buscar_producto(codigo)
-        if producto:
+        if producto and hay_stock(codigo, cantidad):
             subtotal = subtotal + producto["precio"] * cantidad
     return subtotal
 
