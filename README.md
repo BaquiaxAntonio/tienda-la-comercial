@@ -14,3 +14,5 @@ Proyecto de práctica del curso Programación Comercial — UMES.
 
     python facturacion.py
     python reportes.py
+
+Requiere Python 3. No usa dependencias externas.
