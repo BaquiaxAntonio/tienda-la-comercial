@@ -11,7 +11,6 @@ VENTAS_MINIMAS_BONO = 50000
 BONO_ALTO_VENDEDOR = 500
 
 
-# lista de vendedores
 VENDEDORES = [
     ("María López", 45000.00),
     ("Carlos Pérez", 28500.00),
@@ -21,37 +20,77 @@ VENDEDORES = [
 ]
 
 
-def calc():
-    TOTAL_COMISIONES = 0
+def calcular_comision(monto_ventas):
+    """
+    Determina la comisión según el monto vendido.
+    """
+    if monto_ventas > VENTAS_MINIMAS_COMISION_ALTA:
+        return monto_ventas * COMISION_ALTA
 
+    return monto_ventas * COMISION_BASE
+
+
+def calcular_bono(monto_ventas):
+    """
+    Determina si el vendedor recibe bono adicional.
+    """
+    if monto_ventas > VENTAS_MINIMAS_BONO:
+        return BONO_ALTO_VENDEDOR
+
+    return 0
+
+
+def calcular_total_vendedor(monto_ventas):
+    """
+    Calcula la comisión total incluyendo bonos.
+    """
+    comision = calcular_comision(monto_ventas)
+    bono = calcular_bono(monto_ventas)
+
+    return round(comision + bono, 2)
+
+
+def calcular_comisiones(vendedores):
+    """
+    Calcula el total de comisiones y los resultados por vendedor.
+    """
+    resultados = []
+    total_comisiones = 0
+
+    for nombre, ventas in vendedores:
+        total_vendedor = calcular_total_vendedor(ventas)
+
+        total_comisiones += total_vendedor
+
+        resultados.append(
+            (nombre, total_vendedor)
+        )
+
+    return resultados, total_comisiones
+
+
+def imprimir_reporte(resultados, total_comisiones):
+    """
+    Muestra el reporte de comisiones.
+    """
     print("=" * 44)
     print("    COMISIONES DEL MES - LA COMERCIAL")
     print("=" * 44)
 
-    for vendedor in VENDEDORES:
-
-        if vendedor[1] > VENTAS_MINIMAS_COMISION_ALTA:
-            comision = vendedor[1] * COMISION_ALTA
-
-            if vendedor[1] > VENTAS_MINIMAS_BONO:
-                bono = BONO_ALTO_VENDEDOR
-            else:
-                bono = 0
-
-            total_vendedor = round(comision + bono, 2)
-
-        else:
-            comision = vendedor[1] * COMISION_BASE
-            bono = 0
-
-            total_vendedor = round(comision + bono, 2)
-
-        TOTAL_COMISIONES = TOTAL_COMISIONES + total_vendedor
-
-        print(vendedor[0] + ": Q " + str(total_vendedor))
+    for nombre, total in resultados:
+        print(nombre + ": Q " + str(total))
 
     print("-" * 44)
-    print("Total a pagar: Q " + str(round(TOTAL_COMISIONES, 2)))
+    print("Total a pagar: Q " + str(round(total_comisiones, 2)))
 
 
-calc()
+def main():
+    resultados, total_comisiones = calcular_comisiones( VENDEDORES )
+
+    imprimir_reporte(
+        resultados,
+        total_comisiones
+    )
+
+
+main()
