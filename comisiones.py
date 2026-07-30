@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
-# programa de comisiones
-# hecho por kevin
+"""
+Módulo de cálculo de comisiones de La Comercial.
+
+Aplica las reglas de negocio para calcular el pago mensual
+de los vendedores según sus ventas:
+- Ventas superiores al límite establecido reciben comisión alta.
+- Ventas superiores al límite del bono reciben un incentivo adicional.
+- El resto recibe la comisión base.
+"""
 
 COMISION_ALTA = 0.08
 COMISION_BASE = 0.05
@@ -22,7 +29,8 @@ VENDEDORES = [
 
 def calcular_comision(monto_ventas):
     """
-    Determina la comisión según el monto vendido.
+    Calcula la comisión correspondiente al vendedor
+    según el monto total vendido.
     """
     if monto_ventas > VENTAS_MINIMAS_COMISION_ALTA:
         return monto_ventas * COMISION_ALTA
@@ -32,7 +40,8 @@ def calcular_comision(monto_ventas):
 
 def calcular_bono(monto_ventas):
     """
-    Determina si el vendedor recibe bono adicional.
+    Aplica el bono adicional cuando las ventas alcanzan
+    el nivel establecido por la regla de negocio.
     """
     if monto_ventas > VENTAS_MINIMAS_BONO:
         return BONO_ALTO_VENDEDOR
@@ -42,7 +51,7 @@ def calcular_bono(monto_ventas):
 
 def calcular_total_vendedor(monto_ventas):
     """
-    Calcula la comisión total incluyendo bonos.
+    Obtiene el pago total del vendedor sumando comisión y bono.
     """
     comision = calcular_comision(monto_ventas)
     bono = calcular_bono(monto_ventas)
@@ -52,7 +61,8 @@ def calcular_total_vendedor(monto_ventas):
 
 def calcular_comisiones(vendedores):
     """
-    Calcula el total de comisiones y los resultados por vendedor.
+    Procesa la lista de vendedores y devuelve los resultados
+    individuales junto con el total general de comisiones.
     """
     resultados = []
     total_comisiones = 0
@@ -71,7 +81,8 @@ def calcular_comisiones(vendedores):
 
 def imprimir_reporte(resultados, total_comisiones):
     """
-    Muestra el reporte de comisiones.
+    Presenta el reporte final de comisiones manteniendo
+    el formato original del sistema.
     """
     print("=" * 44)
     print("    COMISIONES DEL MES - LA COMERCIAL")
@@ -85,7 +96,7 @@ def imprimir_reporte(resultados, total_comisiones):
 
 
 def main():
-    resultados, total_comisiones = calcular_comisiones( VENDEDORES )
+    resultados, total_comisiones = calcular_comisiones(VENDEDORES)
 
     imprimir_reporte(
         resultados,
